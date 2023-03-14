@@ -15,30 +15,36 @@ console.log('Test - should say "Hello World!"', hello());
 // 2. Function to return an personalized hello, using the `name` argument.
 //    for example 'Hello, Jo!', or 'Hello, Stacy!'
 function helloName( name ) {
-  return;
+  return 'Hello ' +  name;
 }
 // Remember to call the function to test
+console.log('Should return "Hello" and the "name" argument:', helloName('Heng'));
 
 
 // 3. Function to add two numbers together & return the result
-function addNumbers( firstNumber ) {
+function addNumbers( firstNumber, secondNumber ) {
+  let combinedNumber = firstNumber + secondNumber;
   // return firstNumber + secondNumber;
+  return combinedNumber;
 }
+console.log('Function should return the sum of 5 and 8:', addNumbers(5, 8));
 
 
 // 4. Function to multiply three numbers & return the result
-function multiplyThree( ){
-
+function multiplyThree( num1, num2, num3){
+  let combinedNumber = num1 * num2 * num3;
+  return combinedNumber;
 }
+console.log("Function should return the product of 3, 5, 2:", multiplyThree( 3, 5, 2));
 
 
 // 5. Function that will return true if a number is positive, 
 //    or greater than zero, and false otherwise
 function isPositive( number ) {
   if ( number > 0 ){
-    return;
+    return true;
   }
-    return;
+    return false;
 }
 // Call the function to test each outcome (true & false) 
 // Write a separate console.log statement for each outcome
@@ -50,15 +56,31 @@ console.log( 'isPositive - should say false', isPositive(-3) );
 // 6. Function to return the _last_ item in an array. If the 
 //    array is empty, return `undefined`.
 function getLast( array ) {
-
+  let lastItem = array.pop();
+  return lastItem;
 }
+let filledArray = [ 'cookies', 'dirt-block', 'cobblestone', 'string', 'spider-eye'];
+let emptyArray = [];
+console.log('getLast - should return with "spider-eye":', getLast(filledArray));
+console.log('getLast - should return undefined:', getLast(emptyArray));
+
 
 // 7. Function to find a value in an array. Return true if the 
 //    value is found and false otherwise. Use a loop;
 //    DO NOT use Array.includes, Array.indexOf, or Array.find 
 function find( value, array ){
-  
+  let trueFalse = false;
+  for  ( item of array) {
+    if (item === value) {
+      trueFalse = true;
+    } 
+  }
+  return trueFalse;
 }
+let testArray = [ 'cat', 'dog', 'fish', 'bird'];
+console.log('find - should return true:', find( "cat", testArray));
+console.log('find - should return false:', find( 2, testArray));
+
 
 // ----------------------
 // Stretch Goals
@@ -66,6 +88,7 @@ function find( value, array ){
 // 8. Function to check if a letter is the first letter in a 
 //    string. Return true if it is, and false otherwise
 function isFirstLetter(letter, string) {
+  
 
 }
 console.log( 'isFirstLetter - should say true', isFirstLetter('a', 'apple') );
