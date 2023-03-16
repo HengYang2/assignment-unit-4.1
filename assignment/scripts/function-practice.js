@@ -70,7 +70,7 @@ console.log('getLast - should return undefined:', getLast(emptyArray));
 //    DO NOT use Array.includes, Array.indexOf, or Array.find 
 function find( value, array ){
   let trueFalse = false;
-  for  ( item of array) {
+  for  (const item of array) {
     if (item === value) {
       trueFalse = true;
     } 
@@ -89,7 +89,7 @@ console.log('find - should return false:', find( 2, testArray));
 //    string. Return true if it is, and false otherwise
 function isFirstLetter(letter, string) {
   let firstChar = string[0];
-  if (letter === string[0]) {
+  if (letter === firstChar) {
     return true;
   }
   return false;
@@ -98,18 +98,69 @@ console.log( 'isFirstLetter - should say true', isFirstLetter('a', 'apple') );
 console.log( 'isFirstLetter - should say false', isFirstLetter('z', 'apple') );
 
 // 9. Function to return the sum of all numbers in an array
-function sumAll( ) {
+function sumAll( array ) {
   let sum = 0
   // TODO: loop to add items
+  for (const number of array) {
+    sum += number;
+  }
   return sum;
 }
+let arraryOfNumbers = [1, 131, 241, 678, 764, 186,];
+console.log('The sum of arrayOfNumbers is', sumAll(arraryOfNumbers));
 
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers
 //     return an empty array. Note: The input array should not change.
-
-
+let inputArray1 = [ 0, 1, 2, -1, -2];
+let inputArray2 = [ -3, -2, -1, 0];
+function returnPositiveNumbers( array ) {
+  let outputArray = [];
+  for (const number of array) {
+    if (number > 0) {
+      outputArray.push(number);
+    }
+  }
+  return outputArray;
+}
+console.log('returnPositiveNumbers - Should return 1 and 2:', returnPositiveNumbers(inputArray1));
+console.log('returnPositiveNumbers - Should return empty array:', returnPositiveNumbers(inputArray2));
 
 // 11. Pick a problem from Edabit(https://edabit.com/) or 
 //     CodeWars(https://www.codewars.com/). Then describe it 
 //     here in a comment, write the function, and test it!
+
+// 11. Write a function that accepts an array of 10 integers (between 0 and 9),
+//     that returns a string of those numbers in the form of a phone number.
+//     ex: [1,2,3,4,5,6,7,8,9,0] --> (123) 456-7890
+let numberArray1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+let numberArray2 = [3, 2, 1, 4, 5, 9, 7, 0, 6, 8];
+
+function createPhoneNumber(array) {
+  let block1 = [];
+  let block2 = [];
+  let block3 = [];
+  let completedNumberString = '';
+  
+  //Clones items in the 'array argument' into seperate arrays.
+  for (let i=0; i<10; i++) {
+    if (i < 3) {
+      block1.push(array[i])
+    } else if (i < 6) {
+      block2.push(array[i])
+    } else {
+      block3.push(array[i])
+    }
+  }
+  let b1CompactNumber = block1.join('');
+  let b1String = '(' + b1CompactNumber + ')';
+
+  let b2CompactNumber= block2.join('');
+  let b3CompactNumber = block3.join('');
+  let b2b3String = b2CompactNumber + '-' + b3CompactNumber;
+
+  completedNumberString = b1String + ' ' + b2b3String;
+  return completedNumberString;
+}
+console.log('createPhoneNumber - expecting (123) 456-7890:', createPhoneNumber(numberArray1));
+console.log('createPhoneNumber - expecting (321) 459-7068:', createPhoneNumber(numberArray2));
